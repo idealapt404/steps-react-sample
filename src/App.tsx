@@ -6,15 +6,14 @@ const messages: string[] = [
   "Invest your new income 🤑",
 ];
 
-function App() {
+const Step: React.FC = () => {
   const [step, setStep] = useState(1);
-
   const handlePrevious = () => {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   }
 
   const handleNext = () => {
-    if (step < 3) setStep(step + 1);
+    if (step < 3) setStep((s) => s + 1);
   }
 
   return (
@@ -45,6 +44,20 @@ function App() {
       </div>
     </div>
   );
+
+}
+const App = () => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <>
+      <button className="close" onClick={() => setIsOpen((open) => !open)}>
+        &times;
+      </button>
+      {isOpen && <Step />}
+    </>
+  )
+
 }
 
 export default App;
